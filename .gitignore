@@ -1,7 +1,7 @@
 # --- Documentation (Local Only) ---
 TECHNICAL_CONTEXT_OVR.md
 THE_NON_TECHNICAL_GUIDE.md
-
+EVALUATION_RESPONSE
 # --- Python Specific ---
 __pycache__/
 *.py[cod]
