@@ -13,7 +13,7 @@ description = "Adaptive Differentiable Pruning for CIFAR-10 using P-Control Lamb
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
-    { name = "Aditya", email = "your-email@example.com" },
+    { name = "Aditya", email = "adityamuthyala74@gmail.com" },
 ]
 # The fix: dependencies is now a flat array directly under [project]
 dependencies = [
