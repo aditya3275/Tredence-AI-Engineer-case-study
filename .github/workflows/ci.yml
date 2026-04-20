@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        # Testing on multiple versions ensures the code is robust
+        # Validating across multiple versions to ensure PEP 517 compatibility
         python-version: ['3.11', '3.12']
 
     steps:
@@ -24,21 +24,24 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip' # Speeds up subsequent runs by caching dependencies
+          cache: 'pip'
 
-      - name: Install Project & Dependencies
+      - name: Install Build Tools & Project
+        # Explicitly installing setuptools and wheel resolves the BackendUnavailable error
+        # by ensuring the PEP 517 build-backend is available in the environment.
         run: |
           python -m pip install --upgrade pip
-          pip install -e .[dev]
+          python -m pip install setuptools>=68.0 wheel
+          pip install -e ".[dev]"
 
       - name: Run Logic Tests (Pytest)
-        # Ensures PrunableLinear and PrunableNetwork logic remains sound
+        # Verifies the PrunableLinear logic and AdaptiveLambdaController arithmetic
         run: pytest -v
 
       - name: Check Formatting (Black)
-        # Fails the build if the code is not formatted correctly
+        # Enforces zero-tolerance for inconsistent formatting
         run: black --check src/
 
       - name: Check Import Sorting (isort)
-        # Fails the build if imports are messy
+        # Ensures clean, categorized import blocks
         run: isort --check src/
