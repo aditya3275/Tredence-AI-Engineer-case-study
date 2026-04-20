@@ -325,6 +325,24 @@ The final pruned model is additionally saved as `outputs/models/pruned_model.pt`
 
 The +1.59pp accuracy gain of the 67%-sparse model over the dense baseline is explained by the **implicit regularization effect** of the L1 gate penalty. By forcing the network to route information through fewer connections, the penalty acts as a form of structured sparsity regularization — reducing co-adaptation between neurons and lowering model variance on the 50K-sample CIFAR-10 training set. This effect is consistent with established literature on the relationship between network over-parameterization and generalization on small-to-medium scale datasets.
 
+### 6.4 Visual Evidence
+
+#### Phase Transition & Controller Trajectory
+The P-Controller successfully navigates the "Catastrophic Collapse" boundary. Notice the oscillation and eventual stabilization of $\lambda$ as it reacts to the gate sparsity.
+
+![Lambda Trajectory](outputs/lambda_trajectory.png)
+
+#### Final Gate Sparsity
+At the end of 50 epochs, the distribution is cleanly bimodal. Over 67% of the parameters are effectively zeroed (behind the $1e^{-2}$ threshold), leaving a highly efficient sub-network.
+
+![Gate Distribution](outputs/gate_dist_adaptive.png)
+
+#### Training Dynamics
+The relationship between loss convergence and the rising sparsity setpoint. 
+
+![Training Curves](outputs/training_curves.png)
+
+
 ---
 
 ## 7. Project Structure
@@ -366,7 +384,7 @@ tredence-case-study/
 
 ```bash
 # 1. Clone and enter the repository
-git clone <repository-url>
+git clone https://github.com/aditya3275/Tredence-AI-Engineer-case-study
 cd tredence-case-study
 
 # 2. Create and activate a virtual environment
