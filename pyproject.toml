@@ -25,7 +25,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/your-username/Tredence-AI-Engineer-case-study"
+Repository = "https://github.com/aditya3275/Tredence-AI-Engineer-case-study"
 
 # ─────────────────────────────────────────────
 #  Development / Tooling Dependencies
