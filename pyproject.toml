@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+# ─────────────────────────────────────────────
+#  Project Metadata
+# ─────────────────────────────────────────────
+
+[project]
+name = "tredence-cifar10-pruning"
+version = "0.1.0"
+description = "Adaptive Differentiable Pruning for CIFAR-10 using P-Control Lambda Tuning."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Aditya (M.Tech Cloud Computing, SRMIST)" },
+]
+
+[project.urls]
+Repository = "https://github.com/your-username/tredence-case-study"
+
+# ─────────────────────────────────────────────
+#  Runtime Dependencies
+# ─────────────────────────────────────────────
+#
+#  Version rationale
+#  -----------------
+#  torch>=2.4.0      — minimum version with stable MPS support on Apple Silicon;
+#                      the backend used in all training / evaluation runs.
+#  torchvision>=0.19 — pairs with torch 2.4.x; provides the CIFAR-10 dataset
+#                      helpers used in get_dataloaders().
+#  numpy>=2.1,<3     — 2.1 resolves the VisibleDeprecationWarning raised by
+#                      torchvision's pickle.load() path under NumPy 2.0.
+#  matplotlib>=3.9   — used for gate distribution, training curves, and the
+#                      lambda trajectory plots.
+#  tqdm>=4.66        — progress-bar utility; ready to wrap DataLoader loops.
+
+[project.dependencies]
+dependencies = [
+    "torch>=2.4.0",
+    "torchvision>=0.19.0",
+    "numpy>=2.1.0,<3.0",
+    "matplotlib>=3.9.0,<4.0",
+    "tqdm>=4.66.0,<5.0",
+]
+
+# ─────────────────────────────────────────────
+#  Development / Tooling Dependencies
+# ─────────────────────────────────────────────
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.0,<9.0",
+    "black>=24.4.0",
+    "isort>=5.13.0",
+]
+
+# ─────────────────────────────────────────────
+#  Package Discovery
+# ─────────────────────────────────────────────
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+# ─────────────────────────────────────────────
+#  Black — code formatter
+# ─────────────────────────────────────────────
+
+[tool.black]
+line-length = 92
+target-version = ["py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | venv
+  | __pycache__
+  | data
+  | outputs
+)/
+'''
+
+# ─────────────────────────────────────────────
+#  isort — import sorter (Black-compatible profile)
+# ─────────────────────────────────────────────
+
+[tool.isort]
+profile = "black"
+line_length = 92
+known_third_party = ["torch", "torchvision", "numpy", "matplotlib", "tqdm", "pytest"]
+known_first_party = ["src"]
+
+# ─────────────────────────────────────────────
+#  pytest
+# ─────────────────────────────────────────────
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

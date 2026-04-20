@@ -1,0 +1,19 @@
+# --- Documentation (Local Only) ---
+TECHNICAL_CONTEXT_OVR.md
+THE_NON_TECHNICAL_GUIDE.md
+
+# --- Python Specific ---
+__pycache__/
+*.py[cod]
+venv/
+*.egg-info/
+
+# --- Project Specific Artifacts ---
+outputs/models/*.pt
+outputs/*.png
+
+# --- Data ---
+data/
+
+# --- macOS Specific ---
+.DS_Store
