@@ -10,7 +10,7 @@ venv/
 
 # --- Project Specific Artifacts ---
 outputs/models/*.pt
-outputs/*.png
+
 
 # --- Data ---
 data/
