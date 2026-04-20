@@ -16,4 +16,4 @@ outputs/models/*.pt
 data/
 
 # --- macOS Specific ---
-.DS_Store
+.DS_StoreEVALUATION_RESPONSE.md
