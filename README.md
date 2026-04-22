@@ -444,4 +444,4 @@ This is the highest-priority architectural upgrade. Recommended starting gains: 
 
 ---
 
-*For full technical depth — controller derivations, gradient flow proofs, phase transition analysis, and interview preparation — refer to [`report.md`](report.md), [`TECHNICAL_CONTEXT_OVR.md`](TECHNICAL_CONTEXT_OVR.md), and [`THE_NON_TECHNICAL_GUIDE.md`](THE_NON_TECHNICAL_GUIDE.md).*
+
